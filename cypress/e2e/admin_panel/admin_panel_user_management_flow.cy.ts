@@ -1,9 +1,9 @@
 import * as uihelper from "../../../lib/admin_panel/uihelper";
-// import * as utilsCommon from "../../../lib/common/utilsCommon";
+import * as utilsCommon from "../../../lib/common/utilsCommon";
 
 let testState: string | undefined = "passed";
 
-const XS: string = String(Math.floor(Math.random() * 9000 + 1000));
+const XS: string = utilsCommon.getRandomNumber(1000, 9999).toString();
 // const TS: string = utilsCommon.getTimestamp();
 
 describe("Project - Admin Panel - ( User Management Flow )", function () {
