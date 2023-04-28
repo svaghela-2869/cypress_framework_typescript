@@ -5,8 +5,8 @@
    "main": "index.js",
    "scripts": {
       "cypress": "npx cypress open",
-      "chrome": "npx cypress run --spec cypress/e2e/*.cy.ts --browser chrome --headed",
-      "firefox": "npx cypress run --spec cypress/e2e/*.cy.ts --browser firefox --headed",
+      "chrome": "npx cypress run --spec cypress/e2e/**/*.cy.ts --browser chrome --headed",
+      "firefox": "npx cypress run --spec cypress/e2e/**/*.cy.ts --browser firefox --headed",
       "random": "npx cypress run --spec cypress/e2e/random_search.cy.ts --browser chrome --headed"
    },
    "keywords": [],
