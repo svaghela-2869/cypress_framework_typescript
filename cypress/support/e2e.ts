@@ -17,10 +17,15 @@
 import "./commands";
 import "cypress-mochawesome-reporter/register";
 require("cypress-terminal-report/src/installLogsCollector")();
+require("@cypress/grep")();
 
 import "@cypress/xpath";
 
 Cypress.on("uncaught:exception", (err) => {
    console.error(err);
    return false;
+});
+
+beforeEach(function () {
+   cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
 });

@@ -40,6 +40,7 @@ export default defineConfig({
          };
          require("cypress-mochawesome-reporter/plugin")(on);
          require("cypress-terminal-report/src/installLogsPrinter")(on, options);
+         require("@cypress/grep/src/plugin")(config);
          return config;
       },
    },
