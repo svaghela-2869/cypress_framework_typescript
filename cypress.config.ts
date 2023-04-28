@@ -4,8 +4,8 @@ const runDate = new Date();
 const resultFolder = String("results/D_" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "_T_" + runDate.getHours() + ":" + runDate.getMinutes() + ":" + runDate.getSeconds());
 
 export default defineConfig({
-   viewportWidth: 1280,
-   viewportHeight: 720,
+   viewportWidth: 1920,
+   viewportHeight: 1080,
    defaultCommandTimeout: 5_000,
    pageLoadTimeout: 10_000,
    chromeWebSecurity: false,
