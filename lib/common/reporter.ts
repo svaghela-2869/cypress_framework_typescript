@@ -1,20 +1,17 @@
-export async function info(value: string) {
+export function info(value: string) {
    cy.addTestContext("Info : " + value);
    cy.log("Info : " + value);
    return;
 }
 
-export async function pass(value: string) {
+export function pass(value: string) {
    cy.addTestContext("Pass : " + value);
    cy.log("Pass : " + value);
    return;
 }
 
-export async function fail(value: string) {
-   cy.addTestContext({
-      title: "Error",
-      value: value,
-   });
+export function fail(value: string) {
+   cy.addTestContext("Error : " + value);
    cy.log("Error : " + value);
-   cy.get("Error : Please check last error in the log for reference...").should("not.be.ok");
+   throw new Error(value);
 }
