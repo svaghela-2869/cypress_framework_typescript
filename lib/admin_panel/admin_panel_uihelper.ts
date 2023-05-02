@@ -12,18 +12,8 @@ export function login(userName: string, password: string) {
 }
 
 export function logout() {
-   cy.get(".avatar")
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
-   cy.get("span")
-      .contains("Sign Out")
-      .first()
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
+   cy.get(".avatar").click();
+   cy.get("span").contains("Sign Out").first().click();
    reporter.pass("Logged out sucessfully.");
    return;
 }
@@ -33,23 +23,14 @@ export function clickMenuItem(menu: string) {
    let menuArray = menu.split(">");
    for (let i = 0; i < menuArray.length; i++) {
       let currentMenu = menuArray[i].trim();
-      cy.contains(".menu > div", currentMenu)
-         .contains("span", currentMenu)
-         .click()
-         .then(function () {
-            cy.wait(1000);
-         });
+      cy.contains(".menu > div", currentMenu).contains("span", currentMenu).click();
       reporter.pass("[ " + currentMenu + " ] menu clicked.");
    }
    return;
 }
 
 export function clickButton(name: string) {
-   cy.xpath("//button[.='" + name + "']")
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
+   cy.xpath("//button[.='" + name + "']").click();
    reporter.pass("[ " + name + " ] button clicked.");
    return;
 }
@@ -61,18 +42,8 @@ export function setTextInputText(name: string, value: string) {
 }
 
 export function selectOneChoice(name: string, optionToSelect: string) {
-   cy.contains("label", name)
-      .parent()
-      .find(".select__control input")
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
-   cy.contains(".ml-2", optionToSelect)
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
+   cy.contains("label", name).parent().find(".select__control input").click();
+   cy.contains(".ml-2", optionToSelect).click();
    reporter.pass("[ " + optionToSelect + " ] selected from [ " + name + " ] select one choice.");
    return;
 }
@@ -82,10 +53,11 @@ export function verifyRowValueExistsInTable(values: string, tableSortable: boole
    const eachValues: string[] = values.split(";");
    var valuesFound = 0;
    var foundAtRow = -1;
-   if (tableSortable == true) {
+   if (tableSortable) {
+      cy.wait(1000);
       cy.get(".cursor-pointer > span").should("be.visible");
+      cy.get(".transform").should("not.exist");
    }
-   cy.wait(1000);
    cy.get("main table tbody tr")
       .should("be.visible")
       .each(function ($ele, index) {
@@ -129,7 +101,6 @@ export function clickCheckBoxInTable(uniqueRowText: string) {
          const rowText = $ele.text();
          cy.log("Row Text : " + rowText);
          if (rowText.toLowerCase().includes(uniqueRowText.toLowerCase())) {
-            // valuesFound = true;
             foundAtRow = index;
             return false;
          }
@@ -152,18 +123,22 @@ export function clickCheckBoxInTable(uniqueRowText: string) {
 }
 
 // give unique value of row before > and then give the button name to be clicked
-export function performActionInUserTable(uniqueRowText: string) {
+export function performActionInUserTable(uniqueRowText: string, tableSortable: boolean) {
    let actionToPerform: string = uniqueRowText.split(">")[1].trim();
    uniqueRowText = uniqueRowText.split(">")[0].trim();
    var foundAtRow = -1;
-   cy.wait(1000);
+   if (tableSortable) {
+      cy.wait(1000);
+      cy.get(".cursor-pointer > span").should("be.visible");
+      cy.get(".transform").should("not.exist");
+      cy.wait(1000);
+   }
    cy.get("main table tbody tr")
       .should("be.visible")
       .each(function ($ele, index) {
          const rowText = $ele.text();
          cy.log("Row Text : " + rowText);
          if (rowText.toLowerCase().includes(uniqueRowText.toLowerCase())) {
-            // valuesFound = true;
             foundAtRow = index;
             return false;
          }
@@ -174,18 +149,10 @@ export function performActionInUserTable(uniqueRowText: string) {
             let rowSelector = "main table tbody tr:nth-child(" + Number(foundAtRow + 1) + ")";
             cy.get(rowSelector).scrollIntoView();
             if (String(actionToPerform).toLowerCase() == "edit") {
-               cy.get(rowSelector + " button:nth-child(1)")
-                  .click()
-                  .then(function () {
-                     cy.wait(1000);
-                  });
+               cy.get(rowSelector + " button:nth-child(1)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ edit ] clicked.");
             } else if (String(actionToPerform).toLowerCase() == "delete") {
-               cy.get(rowSelector + " button:nth-child(2)")
-                  .click()
-                  .then(function () {
-                     cy.wait(1000);
-                  });
+               cy.get(rowSelector + " button:nth-child(2)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ delete ] clicked.");
             } else {
                reporter.fail("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", but given action button is not found.");
@@ -205,11 +172,7 @@ export function verifyReadOnlyText(value: string) {
 }
 
 export function clickLink(value: string) {
-   cy.xpath("//a[.='" + value + "']")
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
+   cy.xpath("//a[.='" + value + "']").click();
    reporter.pass("[ " + value + " ] link clicked.");
    return;
 }
@@ -249,18 +212,22 @@ export function checkElementEnabledWithCssSelector(selector: string) {
 }
 
 // give unique value of row before > and then give the button name to be clicked
-export function performActionInRolesTable(uniqueRowText: string) {
+export function performActionInRolesTable(uniqueRowText: string, tableSortable: boolean) {
    let actionToPerform: string = uniqueRowText.split(">")[1].trim();
    uniqueRowText = uniqueRowText.split(">")[0].trim();
    var foundAtRow = -1;
-   cy.wait(1000);
+   if (tableSortable) {
+      cy.wait(1000);
+      cy.get(".cursor-pointer > span").should("be.visible");
+      cy.get(".transform").should("not.exist");
+      cy.wait(1000);
+   }
    cy.get("main table tbody tr")
       .should("be.visible")
       .each(function ($ele, index) {
          const rowText = $ele.text();
          cy.log("Row Text : " + rowText);
          if (rowText.toLowerCase().includes(uniqueRowText.toLowerCase())) {
-            // valuesFound = true;
             foundAtRow = index;
             return false;
          }
@@ -271,25 +238,13 @@ export function performActionInRolesTable(uniqueRowText: string) {
             let rowSelector = "main table tbody tr:nth-child(" + Number(foundAtRow + 1) + ")";
             cy.get(rowSelector).scrollIntoView();
             if (String(actionToPerform).toLowerCase() == "edit") {
-               cy.get(rowSelector + " button:nth-child(1)")
-                  .click()
-                  .then(function () {
-                     cy.wait(1000);
-                  });
+               cy.get(rowSelector + " button:nth-child(1)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ edit ] clicked.");
             } else if (String(actionToPerform).toLowerCase() == "view") {
-               cy.get(rowSelector + " button:nth-child(2)")
-                  .click()
-                  .then(function () {
-                     cy.wait(1000);
-                  });
+               cy.get(rowSelector + " button:nth-child(2)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ view ] clicked.");
             } else if (String(actionToPerform).toLowerCase() == "delete") {
-               cy.get(rowSelector + " button:nth-child(3)")
-                  .click()
-                  .then(function () {
-                     cy.wait(1000);
-                  });
+               cy.get(rowSelector + " button:nth-child(3)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ delete ] clicked.");
             } else {
                reporter.fail("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", but given action button is not found.");

@@ -5,7 +5,6 @@ describe("Google Search", function () {
    it("Random Text Search.", function () {
       for (let i = 0; i < 10; i++) {
          cy.visit("https://www.google.com/");
-         cy.wait(1000);
          let randomText = Random.String();
          cy.get("[name='q']").type(randomText + "{enter}");
          reporter.pass("[ " + randomText + " ] searched.");

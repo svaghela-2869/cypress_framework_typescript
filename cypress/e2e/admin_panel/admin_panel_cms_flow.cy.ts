@@ -20,7 +20,7 @@ describe("Project - Admin Panel - ( CMS Flow )", function () {
       admin_panel_uihelper.clickButton("Add CMS");
       admin_panel_uihelper.setTextInputText("Slug", "TEMP_CMS_SLUG_" + XS);
       admin_panel_uihelper.setTextInputText("Name", "TEMP_CMS_NAME_" + XS);
-      uihelper.typeContentInIFrame("iframe[title='Rich Text Area']", "p", "Entering value in iFrame p tag.");
+      uihelper.typeContentInIFrame("iframe[title='Rich Text Area']", "p", "adding cms.");
       admin_panel_uihelper.selectOneChoice("Status", "Active");
       admin_panel_uihelper.clickButton("Cancel");
       admin_panel_uihelper.logout();
