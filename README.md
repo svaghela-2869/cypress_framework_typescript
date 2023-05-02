@@ -2,7 +2,7 @@
 
 ### Setup
 
-1. Required dependencies installation
+1. Install Required Dependencies.
 
 ```
 npm install
@@ -18,12 +18,19 @@ npm run cypress
 
 ```
 npm run chrome
+
 npm run firefox
 ```
 
-### Features
+### Extra Features
 
-1. if you want to run only specific tests like sanity or regression and skip other tests, then add below option for scripts in package.json file and make sure your test suite name contains the keyword.
+1. To list all the available tests in your project, use below command.
+
+```
+npm run list-tests
+```
+
+2. If you want to run only specific tests like sanity or regression and skip other tests, then add below option for scripts in package.json file and make sure your test suite name contains the keyword.
 
 ```
 --env grep='sanity'

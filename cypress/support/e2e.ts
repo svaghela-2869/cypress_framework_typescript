@@ -19,7 +19,7 @@ import "cypress-mochawesome-reporter/register";
 require("cypress-terminal-report/src/installLogsCollector")();
 require("@cypress/grep")();
 
-Cypress.on("uncaught:exception", (err) => {
+Cypress.on("uncaught:exception", () => {
    return false;
 });
 

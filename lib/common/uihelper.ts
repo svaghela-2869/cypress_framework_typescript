@@ -7,22 +7,28 @@ export function launch_url(url: string) {
    return;
 }
 
+export function checkElementEnabledWithXpath(xpath: string) {
+   cy.xpath(xpath).should("be.enabled");
+   return;
+}
+
+export function checkElementEnabledWithCssSelector(selector: string) {
+   cy.get(selector).should("be.enabled");
+   return;
+}
+
+export function getElementWithXpath(xpath: string) {
+   return cy.xpath(xpath);
+}
+
 export function clickElementWithXpath(xpath: string) {
-   cy.xpath(xpath)
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
+   cy.xpath(xpath).click();
    reporter.pass("XPath element [ " + xpath + " ] clicked.");
    return;
 }
 
 export function clickElementWithCssSelector(selector: string) {
-   cy.get(selector)
-      .click()
-      .then(function () {
-         cy.wait(500);
-      });
+   cy.get(selector).click();
    reporter.pass("Selector element [ " + selector + " ] clicked.");
    return;
 }
