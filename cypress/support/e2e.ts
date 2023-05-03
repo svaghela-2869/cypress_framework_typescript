@@ -19,9 +19,9 @@ import "cypress-mochawesome-reporter/register";
 require("cypress-terminal-report/src/installLogsCollector")();
 require("@cypress/grep")();
 
-Cypress.on("uncaught:exception", () => {
-   return false;
-});
+// Cypress.on("uncaught:exception", function () {
+//    return false;
+// });
 
 beforeEach(function () {
    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });

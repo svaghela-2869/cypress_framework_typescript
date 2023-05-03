@@ -27,6 +27,7 @@ export default defineConfig({
       autoOpen: true,
       quiet: true,
       ignoreVideos: true,
+      showPending: false,
    },
 
    e2e: {
