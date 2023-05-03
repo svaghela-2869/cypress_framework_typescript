@@ -42,6 +42,7 @@ const getIframeBody = function (iframeSelector: string) {
 };
 
 export function typeContentInIFrame(iframeSelector: string, fieldSelector: string, valueToEnter: string) {
-   getIframeBody(iframeSelector).find(fieldSelector).type(valueToEnter);
+   getIframeBody(iframeSelector).find(fieldSelector).as("fieldSelector");
+   cy.get("@fieldSelector").type(valueToEnter);
    reporter.pass("Value [ " + valueToEnter + " ] entered inside [ " + fieldSelector + " ] inside iFrame [ " + iframeSelector + " ]");
 }
