@@ -31,6 +31,8 @@ export default defineConfig({
    },
 
    e2e: {
+      specPattern: "cypress/tests/**/*.spec.ts",
+
       setupNodeEvents(on, config) {
          const options = {
             outputRoot: resultFolder,

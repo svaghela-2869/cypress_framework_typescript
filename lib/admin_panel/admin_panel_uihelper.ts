@@ -1,5 +1,4 @@
 import * as reporter from "../common/reporter";
-import "@cypress/xpath";
 
 export function login(userName: string, password: string) {
    setTextInputText("Email", userName);
@@ -35,16 +34,25 @@ export function clickButton(name: string) {
    return;
 }
 
-export function setTextInputText(name: string, value: string) {
-   cy.xpath("(//label[contains(text(),'" + name + "')]//following::input)[1]").type(value);
-   reporter.pass("[ " + value + " ] entered in [ " + name + " ] input box.");
+export function setTextInputText(labelName: string, value: string, placeHolder?: string) {
+   if (placeHolder) {
+      cy.xpath("//input[@placeHolder='" + placeHolder + "']")
+         .first()
+         .type(value);
+      reporter.pass("[ " + value + " ] entered in [ " + placeHolder + " ] input box.");
+   } else {
+      cy.xpath("(//label[contains(text(),'" + labelName + "')]//following::input)")
+         .first()
+         .type(value);
+      reporter.pass("[ " + value + " ] entered in [ " + labelName + " ] input box.");
+   }
    return;
 }
 
-export function selectOneChoice(name: string, optionToSelect: string) {
-   cy.contains("label", name).parent().find(".select__control input").click();
+export function selectOneChoice(labelName: string, optionToSelect: string) {
+   cy.contains("label", labelName).parent().find(".select__control input").click();
    cy.contains(".ml-2", optionToSelect).click();
-   reporter.pass("[ " + optionToSelect + " ] selected from [ " + name + " ] select one choice.");
+   reporter.pass("[ " + optionToSelect + " ] selected from [ " + labelName + " ] select one choice.");
    return;
 }
 

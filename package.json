@@ -6,9 +6,9 @@
    "scripts": {
       "cypress": "npx cypress open",
       "list-tests": "npx find-cypress-specs --names",
-      "chrome": "npx cypress run --headed --browser chrome --spec 'cypress/e2e/**/*.cy.ts'",
-      "firefox": "npx cypress run --headed --browser firefox --spec 'cypress/e2e/**/*.cy.ts'",
-      "random": "npx cypress run --headed --browser chrome --spec cypress/e2e/random_search.cy.ts"
+      "chrome": "npx cypress run --headed --browser chrome",
+      "firefox": "npx cypress run --headed --browser firefox",
+      "random": "npx cypress run --headed --browser chrome --spec cypress/tests/random_search.spec.ts"
    },
    "keywords": [],
    "author": "Sagar Vaghela",
