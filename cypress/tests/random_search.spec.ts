@@ -1,5 +1,6 @@
 import { Random } from "random-test-values";
 import * as reporter from "../../lib/common/reporter";
+import "@cypress/xpath";
 
 describe("Random Google Search", function () {
    it("Random Text Search.", function () {
@@ -7,7 +8,7 @@ describe("Random Google Search", function () {
          cy.visit("https://www.google.com/");
          let randomText = Random.String();
          cy.get("[name='q']").type(randomText + "{enter}");
-         reporter.pass("[ " + randomText + " ] searched.");
+         reporter.pass("[ " + randomText + " ] search.");
       }
    });
 });

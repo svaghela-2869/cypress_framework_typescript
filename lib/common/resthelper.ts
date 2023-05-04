@@ -11,6 +11,5 @@ export function post(url: string, body: any, verifyResponse: boolean) {
 }
 
 export function verifyResponseData(response: any) {
-   reporter.info("Response Body : \n" + JSON.stringify(response.body, null, 2));
    expect(response.status).to.eq(201);
 }

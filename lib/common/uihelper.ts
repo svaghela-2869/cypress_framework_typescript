@@ -1,5 +1,4 @@
 import * as reporter from "../common/reporter";
-import "@cypress/xpath";
 
 export function launch_url(url: string) {
    cy.visit(url);
