@@ -1,6 +1,5 @@
 import { Random } from "random-test-values";
 import * as reporter from "../../lib/common/reporter";
-import "@cypress/xpath";
 
 describe("Random Google Search", function () {
    it("Random Text Search.", function () {
