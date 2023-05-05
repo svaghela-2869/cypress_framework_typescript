@@ -27,6 +27,9 @@
 //
 
 import "@cypress/xpath";
+import "cypress-mochawesome-reporter/register";
+require("cypress-terminal-report/src/installLogsCollector")();
+require("@cypress/grep")();
 
 // declare global {
 //   namespace Cypress {

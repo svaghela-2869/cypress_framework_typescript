@@ -15,9 +15,6 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
-import "cypress-mochawesome-reporter/register";
-require("cypress-terminal-report/src/installLogsCollector")();
-require("@cypress/grep")();
 
 // Cypress.on("uncaught:exception", function () {
 //    return false;

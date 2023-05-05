@@ -8,6 +8,7 @@ export function post(url: string, body: any, verifyResponse: boolean) {
          verifyResponseData(response);
       }
    });
+   // reporter.info("POST Response Body : \n" + JSON.stringify(response, null, 2));
 }
 
 export function verifyResponseData(response: any) {

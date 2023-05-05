@@ -57,14 +57,20 @@ export function selectOneChoice(labelName: string, optionToSelect: string) {
 }
 
 // give row values to be verified with semicolon ; seperated
-export function verifyRowValueExistsInTable(values: string, tableSortable: boolean) {
+export function verifyRowValueExistsInTable(values: string, tableSortable: boolean, searchTable?: string) {
    const eachValues: string[] = values.split(";");
    var valuesFound = 0;
    var foundAtRow = -1;
    if (tableSortable) {
       cy.wait(1000);
       cy.get(".cursor-pointer > span").should("be.visible");
-      cy.get(".transform").should("not.exist");
+   }
+   if (searchTable) {
+      cy.xpath("//input[@placeHolder='Search']")
+         .first()
+         .type(searchTable + "{enter}");
+      cy.wait(3000);
+      cy.get(".transform", { timeout: 5000 }).should("not.exist");
    }
    cy.get("main table tbody tr")
       .should("be.visible")
@@ -138,8 +144,6 @@ export function performActionInUserTable(uniqueRowText: string, tableSortable: b
    if (tableSortable) {
       cy.wait(1000);
       cy.get(".cursor-pointer > span").should("be.visible");
-      cy.get(".transform").should("not.exist");
-      cy.wait(1000);
    }
    cy.get("main table tbody tr")
       .should("be.visible")
@@ -263,4 +267,8 @@ export function performActionInRolesTable(uniqueRowText: string, tableSortable: 
             return;
          }
       });
+}
+
+export async function waitForLoaderToGo() {
+   cy.get(".transform", { timeout: 5000 }).should("not.exist");
 }
