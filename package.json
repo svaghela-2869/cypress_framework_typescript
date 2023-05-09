@@ -25,6 +25,7 @@
       "dateformat": "^5.0.3",
       "find-cypress-specs": "^1.33.1",
       "ignore-case": "^0.1.0",
+      "jsonpath": "^1.1.1",
       "random-test-values": "^2.0.0",
       "typescript": "^5.0.4"
    }
