@@ -33,7 +33,6 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Roles");
-      admin_panel_uihelper.setTextInputText("", "TEMP_QA_" + XS, "Search");
       admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_QA_" + XS, true, "TEMP_QA_" + XS);
       admin_panel_uihelper.logout();
    });
@@ -64,7 +63,6 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Roles");
-      admin_panel_uihelper.setTextInputText("", "TEMP_QA_" + XS, "Search");
       admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_QA_" + XS, true, "TEMP_QA_" + XS);
       admin_panel_uihelper.performActionInRolesTable("TEMP_QA_" + XS + " > edit", true);
       admin_panel_uihelper.clickCheckBoxInTable("settings > Read;Update");

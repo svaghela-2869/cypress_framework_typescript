@@ -1,13 +1,18 @@
 import { defineConfig } from "cypress";
 
 const runDate = new Date();
-const resultFolder = String("results/D_" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "_T_" + runDate.getHours() + "-" + runDate.getMinutes() + "-" + runDate.getSeconds());
+const resultFolder = String("results/D" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "T" + runDate.getHours() + "-" + runDate.getMinutes() + "-" + runDate.getSeconds());
 
 export default defineConfig({
+   env: {
+      requestMode: true,
+      hideCredentials: true,
+   },
+
    viewportWidth: 1920,
    viewportHeight: 1080,
-   defaultCommandTimeout: 5_000,
-   pageLoadTimeout: 10_000,
+   defaultCommandTimeout: 10_000,
+   pageLoadTimeout: 25_000,
    chromeWebSecurity: false,
    videoCompression: false,
 

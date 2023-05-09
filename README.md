@@ -40,4 +40,4 @@ npm run list-tests
 
 1. All tests file should end with .spec.ts & it should be inside 'cypress/tests' folder.
 
-2. By default it will run all the test cases which are available in cypress/e2e folder.
+2. By default it will run all the test cases which are available in cypress/tests folder.
