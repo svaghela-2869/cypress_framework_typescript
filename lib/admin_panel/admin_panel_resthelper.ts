@@ -48,27 +48,27 @@ export function getWithAuth(url: string, authentication: string, storeResponseBo
    });
 }
 
-// export function postWithoutAuth(url: string, body: any, storeResponseBodyAsVariable: string, verifyStatus?: number) {
-//    reporter.info("Performing POST on API [ " + url + " ]");
-//    cy.request({
-//       method: "POST",
-//       url: url,
-//       body: JSON.parse(JSON.stringify(body, null, 4)),
-//    }).then(function (response) {
-//       let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeResponseBodyAsVariable + ".json";
-//       cy.wrap(resFilePath).as(storeResponseBodyAsVariable + "_file_path");
-//       cy.writeFile(resFilePath, response);
-//       reporter.pass("Response stored at [ " + resFilePath + " ]");
+export function postWithoutAuth(url: string, body: any, storeResponseBodyAsVariable: string, verifyStatus?: number) {
+   reporter.info("Performing POST on API [ " + url + " ]");
+   cy.request({
+      method: "POST",
+      url: url,
+      body: JSON.parse(JSON.stringify(body, null, 4)),
+   }).then(function (response) {
+      let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeResponseBodyAsVariable + ".json";
+      cy.wrap(resFilePath).as(storeResponseBodyAsVariable + "_file_path");
+      cy.writeFile(resFilePath, response);
+      reporter.pass("Response stored at [ " + resFilePath + " ]");
 
-//       if (verifyStatus) {
-//          expect(response.status).deep.eq(verifyStatus);
-//          reporter.pass("Starus code [ " + verifyStatus + " ] verified.");
-//       }
+      if (verifyStatus) {
+         expect(response.status).deep.eq(verifyStatus);
+         reporter.pass("Starus code [ " + verifyStatus + " ] verified.");
+      }
 
-//       cy.wrap(response.body).as(`${storeResponseBodyAsVariable}`);
-//       reporter.pass("Response body stored as [ @" + storeResponseBodyAsVariable + " ]");
-//    });
-// }
+      cy.wrap(response.body).as(`${storeResponseBodyAsVariable}`);
+      reporter.pass("Response body stored as [ @" + storeResponseBodyAsVariable + " ]");
+   });
+}
 
 export function postWithAuth(url: string, authentication: string, body: any, storeResponseBodyAsVariable: string, verifyStatus?: number) {
    reporter.info("Performing POST on API [ " + url + " ]");
