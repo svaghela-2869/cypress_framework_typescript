@@ -252,11 +252,8 @@ export function performActionInRolesTable(uniqueRowText: string, tableSortable: 
             if (String(actionToPerform).toLowerCase() == "edit") {
                cy.get(rowSelector + " button:nth-child(1)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ edit ] clicked.");
-            } else if (String(actionToPerform).toLowerCase() == "view") {
-               cy.get(rowSelector + " button:nth-child(2)").click();
-               reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ view ] clicked.");
             } else if (String(actionToPerform).toLowerCase() == "delete") {
-               cy.get(rowSelector + " button:nth-child(3)").click();
+               cy.get(rowSelector + " button:nth-child(2)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ delete ] clicked.");
             } else {
                reporter.fail("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", but given action button is not found.");
