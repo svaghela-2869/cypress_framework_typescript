@@ -64,6 +64,7 @@ export function verifyRowValueExistsInTable(values: string, tableSortable: boole
    if (tableSortable) {
       cy.wait(1000);
       cy.get(".cursor-pointer > span").should("be.visible");
+      cy.wait(1000);
    }
    if (searchTable) {
       cy.xpath("//input[@placeHolder='Search']")
