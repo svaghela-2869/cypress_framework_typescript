@@ -33,7 +33,7 @@ describe("Project - Admin Panel - ( CMS Flow )", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("CMS");
-      admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_CMS_SLUG_" + XS + ";" + "TEMP_CMS_NAME_" + XS, true);
+      admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_CMS_SLUG_" + XS + ";" + "TEMP_CMS_NAME_" + XS, true, "TEMP_CMS_NAME_" + XS);
       admin_panel_uihelper.logout();
    });
 });

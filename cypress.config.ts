@@ -1,7 +1,9 @@
 import { defineConfig } from "cypress";
+// import * as utilsCommon from "./lib/common/utilsCommon";
 
 const runDate = new Date();
 const resultFolder = String("results/D" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "T" + runDate.getHours() + "-" + runDate.getMinutes() + "-" + runDate.getSeconds());
+// const resultFolder = utilsCommon.getTimestamp();
 
 export default defineConfig({
    env: {
@@ -29,10 +31,10 @@ export default defineConfig({
       inlineAssets: true,
       saveAllAttempts: false,
       code: false,
-      autoOpen: true,
-      quiet: true,
+      quiet: false,
       ignoreVideos: true,
       showPending: false,
+      // autoOpen: true,
    },
 
    e2e: {

@@ -8,7 +8,10 @@
       "list-tests": "npx find-cypress-specs --names",
       "chrome": "npx cypress run --headed --browser chrome",
       "firefox": "npx cypress run --headed --browser firefox",
-      "random": "npx cypress run --headed --browser chrome --spec cypress/tests/random_search.spec.ts"
+      "random": "npx cypress run --headed --browser chrome --spec cypress/tests/random_search/*.spec.ts",
+      "docker-clean": "docker rm $(docker ps --all -q)",
+      "docker-mac": "docker pull cypress/included && docker run -it -v $PWD:/tests -w /tests cypress/included --browser chrome",
+      "docker-win": "docker pull cypress/included && docker run -it -v '%cd%':/tests -w /tests cypress/included --browser chrome"
    },
    "keywords": [],
    "author": "Sagar Vaghela",
