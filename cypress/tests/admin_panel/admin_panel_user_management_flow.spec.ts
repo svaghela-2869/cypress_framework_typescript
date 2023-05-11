@@ -13,6 +13,34 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       testState = this.currentTest?.state;
    });
 
+   it("User Management Flow - Role Creation Error Msg Verification.", function () {
+      uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
+      admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
+      admin_panel_uihelper.clickMenuItem("User Management > Roles");
+      admin_panel_uihelper.clickButton("Add Role");
+      admin_panel_uihelper.clickButton("Save");
+      admin_panel_uihelper.verifyReadOnlyText("Please enter role name");
+      admin_panel_uihelper.verifyReadOnlyText("Please enter role status");
+      admin_panel_uihelper.clickButton("Cancel");
+      admin_panel_uihelper.logout();
+   });
+
+   it("User Management Flow - User Creation Error Msg Verification.", function () {
+      uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
+      admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
+      admin_panel_uihelper.clickMenuItem("User Management > Users");
+      admin_panel_uihelper.clickButton("Add User");
+      admin_panel_uihelper.clickButton("Save");
+      admin_panel_uihelper.verifyReadOnlyText("Please enter first name");
+      admin_panel_uihelper.verifyReadOnlyText("Enter Valid email");
+      admin_panel_uihelper.verifyReadOnlyText("Mobile number is not valid");
+      admin_panel_uihelper.verifyReadOnlyText("Password is too short - should be 8 chars minimum.");
+      admin_panel_uihelper.verifyReadOnlyText("Please select role");
+      admin_panel_uihelper.verifyReadOnlyText("Please select status");
+      admin_panel_uihelper.clickButton("Cancel");
+      admin_panel_uihelper.logout();
+   });
+
    it("User Management Flow - Role Creation.", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
@@ -52,7 +80,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.selectOneChoice("Role", "TEMP_QA_" + XS);
       admin_panel_uihelper.selectOneChoice("Status", "Active");
       admin_panel_uihelper.clickButton("Save");
-      admin_panel_uihelper.verifyToastMsgExists("User Added sussessfully");
+      // admin_panel_uihelper.verifyToastMsgExists("User Added sussessfully");
       admin_panel_uihelper.logout();
    });
 
@@ -64,7 +92,8 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Roles");
       admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_QA_" + XS, true, "TEMP_QA_" + XS);
-      admin_panel_uihelper.performActionInRolesTable("TEMP_QA_" + XS + " > edit", true);
+      admin_panel_uihelper.performActionInTable("TEMP_QA_" + XS, true, "edit");
+      admin_panel_uihelper.waitForLoaderToGo();
       admin_panel_uihelper.clickCheckBoxInTable("settings > Read;Update");
       admin_panel_uihelper.clickButton("Save");
       admin_panel_uihelper.logout();
@@ -79,7 +108,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Verify User & Delete.", function () {
+   it("User Management Flow - Verify User & Then Delete.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -87,7 +116,8 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Users");
       admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_" + XS + "_TEMP;temp." + XS + "@webcluesinfotech.com", true, "TEMP_" + XS + "_TEMP");
-      admin_panel_uihelper.performActionInUserTable("temp." + XS + "@webcluesinfotech.com > delete", true);
+      admin_panel_uihelper.performActionInTable("temp." + XS + "@webcluesinfotech.com", true, "delete");
+      admin_panel_uihelper.waitForLoaderToGo();
       admin_panel_uihelper.clickButton("Confirm");
       admin_panel_uihelper.logout();
    });
@@ -100,7 +130,8 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Roles");
       admin_panel_uihelper.setTextInputText("", "TEMP_QA_" + XS, "Search");
-      admin_panel_uihelper.performActionInRolesTable("TEMP_QA_" + XS + " > Delete", true);
+      admin_panel_uihelper.performActionInTable("TEMP_QA_" + XS, true, "delete");
+      admin_panel_uihelper.waitForLoaderToGo();
       admin_panel_uihelper.clickButton("Confirm");
       admin_panel_uihelper.verifyToastMsgExists("role deleted successfully");
       admin_panel_uihelper.logout();

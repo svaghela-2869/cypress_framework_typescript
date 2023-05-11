@@ -34,7 +34,7 @@ export default defineConfig({
       quiet: false,
       ignoreVideos: true,
       showPending: false,
-      // autoOpen: true,
+      autoOpen: true,
    },
 
    e2e: {
@@ -48,8 +48,8 @@ export default defineConfig({
             },
             printLogsToFile: "always",
          };
-         require("cypress-mochawesome-reporter/plugin")(on);
          require("cypress-terminal-report/src/installLogsPrinter")(on, options);
+         require("cypress-mochawesome-reporter/plugin")(on);
          require("@cypress/grep/src/plugin")(config);
          return config;
       },

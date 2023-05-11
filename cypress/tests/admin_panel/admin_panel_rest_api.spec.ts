@@ -10,7 +10,7 @@ describe("Project - Admin Panel - ( REST APIs )", function () {
       testState = this.currentTest?.state;
    });
 
-   it("REST APIs - Create Roles", function () {
+   it("REST APIs - Create Roles.", function () {
       admin_resthelper.storeLoginToken("temp.sagar@webcluesinfotech.com", "temp_sagar@admin", "login_token_1");
       cy.get("@login_token_1").then(function (token) {
          let roleCreateBody = {
@@ -22,7 +22,7 @@ describe("Project - Admin Panel - ( REST APIs )", function () {
       });
    });
 
-   it("REST APIs - Verify & Delete Created Roles", function () {
+   it("REST APIs - Verify & Delete Created Roles.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -39,7 +39,7 @@ describe("Project - Admin Panel - ( REST APIs )", function () {
       });
    });
 
-   it("REST APIs - Get All Roles", function () {
+   it("REST APIs - Get All Roles.", function () {
       if (testState != "passed") {
          this.skip();
       }

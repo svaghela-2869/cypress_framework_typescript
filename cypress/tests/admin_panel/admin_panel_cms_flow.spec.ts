@@ -22,11 +22,28 @@ describe("Project - Admin Panel - ( CMS Flow )", function () {
       admin_panel_uihelper.setTextInputText("Name", "TEMP_CMS_NAME_" + XS);
       uihelper.typeContentInIFrame("iframe[title='Rich Text Area']", "p", "adding cms.");
       admin_panel_uihelper.selectOneChoice("Status", "Active");
-      admin_panel_uihelper.clickButton("Cancel");
+      admin_panel_uihelper.clickButton("Submit");
+      admin_panel_uihelper.verifyToastMsgExists("Page Added sussessfully");
       admin_panel_uihelper.logout();
    });
 
-   it("CMS Flow - Verify Added CMS.", function () {
+   // it("CMS Flow - Verify Added CMS & Edit.", function () {
+   //    if (testState != "passed") {
+   //       this.skip();
+   //    }
+   //    uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
+   //    admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
+   //    admin_panel_uihelper.clickMenuItem("CMS");
+   //    admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_CMS_SLUG_" + XS + ";" + "TEMP_CMS_NAME_" + XS, true, "TEMP_CMS_NAME_" + XS);
+   //    admin_panel_uihelper.performActionInTable("TEMP_CMS_SLUG_" + XS, true, "edit");
+   //    admin_panel_uihelper.waitForLoaderToGo();
+   //    admin_panel_uihelper.selectOneChoice("Status", "Inactive");
+   //    admin_panel_uihelper.verifyToastMsgExists("Page Added sussessfully");
+   //    admin_panel_uihelper.clickButton("Submit");
+   //    admin_panel_uihelper.logout();
+   // });
+
+   it("CMS Flow - CMS Delete.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -34,6 +51,10 @@ describe("Project - Admin Panel - ( CMS Flow )", function () {
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("CMS");
       admin_panel_uihelper.verifyRowValueExistsInTable("TEMP_CMS_SLUG_" + XS + ";" + "TEMP_CMS_NAME_" + XS, true, "TEMP_CMS_NAME_" + XS);
+      admin_panel_uihelper.performActionInTable("TEMP_CMS_SLUG_" + XS, true, "delete");
+      admin_panel_uihelper.waitForLoaderToGo();
+      admin_panel_uihelper.clickButton("Confirm");
+      admin_panel_uihelper.verifyToastMsgExists("CMSdeletedsuccessfully");
       admin_panel_uihelper.logout();
    });
 });

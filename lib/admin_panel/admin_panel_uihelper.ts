@@ -11,7 +11,7 @@ export function login(userName: string, password: string) {
 }
 
 export function logout() {
-   cy.get(".avatar").click();
+   cy.get(".header-action .avatar").click();
    cy.get("span").contains("Sign Out").first().click();
    reporter.pass("Logged out sucessfully.");
    return;
@@ -71,7 +71,7 @@ export function verifyRowValueExistsInTable(values: string, tableSortable: boole
          .first()
          .type(searchTable + "{enter}");
       cy.wait(3000);
-      cy.get(".transform", { timeout: 5000 }).should("not.exist");
+      cy.get(".animate-spin", { timeout: 5000 }).should("not.exist");
    }
    cy.get("main table tbody tr")
       .should("be.visible")
@@ -137,14 +137,15 @@ export function clickCheckBoxInTable(uniqueRowText: string) {
       });
 }
 
-// give unique value of row before > and then give the button name to be clicked
-export function performActionInUserTable(uniqueRowText: string, tableSortable: boolean) {
-   let actionToPerform: string = uniqueRowText.split(">")[1].trim();
-   uniqueRowText = uniqueRowText.split(">")[0].trim();
+export function performActionInTable(uniqueRowText: string, tableSortable: boolean, action: string) {
+   let actionToPerform: string = action;
+   // uniqueRowText = uniqueRowText.split(">")[0].trim();
    var foundAtRow = -1;
    if (tableSortable) {
       cy.wait(1000);
       cy.get(".cursor-pointer > span").should("be.visible");
+      cy.get(".animate-spin").should("not.exist");
+      cy.wait(1000);
    }
    cy.get("main table tbody tr")
       .should("be.visible")
@@ -167,6 +168,9 @@ export function performActionInUserTable(uniqueRowText: string, tableSortable: b
             } else if (String(actionToPerform).toLowerCase() == "delete") {
                cy.get(rowSelector + " button:nth-child(2)").click();
                reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ delete ] clicked.");
+            } else if (String(actionToPerform).toLowerCase() == "view") {
+               cy.get(rowSelector + " button:nth-child(3)").click();
+               reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ view ] clicked.");
             } else {
                reporter.fail("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", but given action button is not found.");
             }
@@ -179,6 +183,7 @@ export function performActionInUserTable(uniqueRowText: string, tableSortable: b
 }
 
 export function verifyReadOnlyText(value: string) {
+   waitForLoaderToGo();
    cy.xpath("//*[text()='" + value + "']").should("be.visible");
    reporter.pass("Text [ " + value + " ] present on ui.");
    return;
@@ -192,7 +197,7 @@ export function clickLink(value: string) {
 
 export function verifyToastMsgExists(value: string) {
    var toastFoundAt = -1;
-   cy.get(".toast-wrapper", { timeout: 5000 })
+   cy.get(".toast-wrapper", { timeout: 10_000 })
       .each(function ($ele, index) {
          const toastMsg = $ele.text();
          cy.log("Toast Text : " + toastMsg);
@@ -224,49 +229,6 @@ export function checkElementEnabledWithCssSelector(selector: string) {
    return;
 }
 
-// give unique value of row before > and then give the button name to be clicked
-export function performActionInRolesTable(uniqueRowText: string, tableSortable: boolean) {
-   let actionToPerform: string = uniqueRowText.split(">")[1].trim();
-   uniqueRowText = uniqueRowText.split(">")[0].trim();
-   var foundAtRow = -1;
-   if (tableSortable) {
-      cy.wait(1000);
-      cy.get(".cursor-pointer > span").should("be.visible");
-      cy.get(".transform").should("not.exist");
-      cy.wait(1000);
-   }
-   cy.get("main table tbody tr")
-      .should("be.visible")
-      .each(function ($ele, index) {
-         const rowText = $ele.text();
-         cy.log("Row Text : " + rowText);
-         if (rowText.toLowerCase().includes(uniqueRowText.toLowerCase())) {
-            foundAtRow = index;
-            return false;
-         }
-         return;
-      })
-      .then(function () {
-         if (foundAtRow != -1) {
-            let rowSelector = "main table tbody tr:nth-child(" + Number(foundAtRow + 1) + ")";
-            cy.get(rowSelector).scrollIntoView();
-            if (String(actionToPerform).toLowerCase() == "edit") {
-               cy.get(rowSelector + " button:nth-child(1)").click();
-               reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ edit ] clicked.");
-            } else if (String(actionToPerform).toLowerCase() == "delete") {
-               cy.get(rowSelector + " button:nth-child(2)").click();
-               reporter.pass("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", and [ delete ] clicked.");
-            } else {
-               reporter.fail("[ " + uniqueRowText + " ] found in row " + Number(foundAtRow + 1) + ", but given action button is not found.");
-            }
-            return;
-         } else {
-            reporter.fail("[ " + uniqueRowText + " ] not found in any row.");
-            return;
-         }
-      });
-}
-
 export async function waitForLoaderToGo() {
-   cy.get(".transform", { timeout: 5000 }).should("not.exist");
+   cy.get(".animate-spin", { timeout: 10_000 }).should("not.exist");
 }

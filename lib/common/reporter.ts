@@ -1,17 +1,17 @@
 export function info(value: string) {
-   cy.addTestContext("Info : " + value);
-   cy.log("Info : " + value);
+   cy.addTestContext(" < INFO > " + value);
+   cy.log("< INFO > " + value);
    return;
 }
 
 export function pass(value: string) {
-   cy.addTestContext("Pass : " + value);
-   cy.log("Pass : " + value);
+   cy.addTestContext(" < PASS > " + value);
+   cy.log("< PASS > " + value);
    return;
 }
 
 export function fail(value: string) {
-   cy.addTestContext("Error : " + value);
-   cy.log("Error : " + value);
+   cy.addTestContext(" < ERROR > " + value);
+   cy.log("< ERROR > " + value);
    throw new Error(value);
 }
