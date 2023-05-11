@@ -14,12 +14,10 @@ npm install
 npm run cypress
 ```
 
-3. Run tests in headed chrome or firefox without opening cypress GUI
+3. Run tests in headed chrome without opening cypress GUI, change browser in script if you want to change.
 
 ```
-npm run chrome
-
-npm run firefox
+npm test
 ```
 
 ### Features
