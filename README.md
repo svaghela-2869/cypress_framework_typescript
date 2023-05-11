@@ -22,7 +22,7 @@ npm run chrome
 npm run firefox
 ```
 
-### Extra Features
+### Features
 
 1. To list all the available tests in your project, use below command.
 
@@ -36,7 +36,7 @@ npm run list-tests
 --env grep='sanity'
 ```
 
-2. If you want to run tests in docker then use below command.
+3. If you want to run tests in docker then use below command.
 
 ```
 npm run docker-mac
