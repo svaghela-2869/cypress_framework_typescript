@@ -36,8 +36,18 @@ npm run list-tests
 --env grep='sanity'
 ```
 
+2. If you want to run tests in docker then use below command.
+
+```
+npm run docker-mac
+
+npm run docker-win
+```
+
 ### Note
 
 1. All tests file should end with .spec.ts & it should be inside 'cypress/tests' folder.
 
 2. By default it will run all the test cases which are available in cypress/tests folder.
+
+3. While running in docker, please make sure you have docker installed, keep that in mind that by default docker will run all the test cases which are available in cypress/tests folder on chrome. if you want to change, then modify script accordingly.
