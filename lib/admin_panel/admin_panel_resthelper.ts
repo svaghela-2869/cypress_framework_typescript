@@ -14,7 +14,7 @@ export function storeLoginToken(username: string, password: string, storeTokenVa
       let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeTokenVariable + ".json";
       cy.wrap(resFilePath).as(storeTokenVariable + "_file_path");
       cy.writeFile(resFilePath, response);
-      reporter.pass("Response stored at [ " + resFilePath + " ]");
+      reporter.pass("Response stored at [ " + resFilePath.split("/cypress_framework_typescript")[1] + " ]");
 
       expect(response.status).deep.eq(201);
       reporter.pass("Starus code [ 201 ] verified.");
@@ -36,7 +36,7 @@ export function getWithAuth(url: string, authentication: string, storeResponseBo
       let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeResponseBodyAsVariable + ".json";
       cy.wrap(resFilePath).as(storeResponseBodyAsVariable + "_file_path");
       cy.writeFile(resFilePath, response);
-      reporter.pass("Response stored at [ " + resFilePath + " ]");
+      reporter.pass("Response stored at [ " + resFilePath.split("/cypress_framework_typescript")[1] + " ]");
 
       if (verifyStatus) {
          expect(response.status).deep.eq(verifyStatus);
@@ -58,7 +58,7 @@ export function postWithoutAuth(url: string, body: any, storeResponseBodyAsVaria
       let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeResponseBodyAsVariable + ".json";
       cy.wrap(resFilePath).as(storeResponseBodyAsVariable + "_file_path");
       cy.writeFile(resFilePath, response);
-      reporter.pass("Response stored at [ " + resFilePath + " ]");
+      reporter.pass("Response stored at [ " + resFilePath.split("/cypress_framework_typescript")[1] + " ]");
 
       if (verifyStatus) {
          expect(response.status).deep.eq(verifyStatus);
@@ -83,7 +83,7 @@ export function postWithAuth(url: string, authentication: string, body: any, sto
       let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeResponseBodyAsVariable + ".json";
       cy.wrap(resFilePath).as(storeResponseBodyAsVariable + "_file_path");
       cy.writeFile(resFilePath, response);
-      reporter.pass("Response stored at [ " + resFilePath + " ]");
+      reporter.pass("Response stored at [ " + resFilePath.split("/cypress_framework_typescript")[1] + " ]");
 
       if (verifyStatus) {
          expect(response.status).deep.eq(verifyStatus);
@@ -134,7 +134,7 @@ export function deleteWithAuth(url: string, authentication: string, storeRespons
       let resFilePath = Cypress.config("downloadsFolder") + "/rest/" + storeResponseBodyAsVariable + ".json";
       cy.wrap(resFilePath).as(storeResponseBodyAsVariable + "_file_path");
       cy.writeFile(resFilePath, response);
-      reporter.pass("Response stored at [ " + resFilePath + " ]");
+      reporter.pass("Response stored at [ " + resFilePath.split("/cypress_framework_typescript")[1] + " ]");
 
       if (verifyStatus) {
          expect(response.status).deep.eq(verifyStatus);
