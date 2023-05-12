@@ -8,12 +8,26 @@ let testState: string | undefined = "passed";
 const XS: string = utilsCommon.getRandomNumber(1000, 9999).toString();
 // const TS: string = utilsCommon.getTimestamp();
 
-describe("Project - Admin Panel - ( CMS Flow )", function () {
+describe("Project - Admin Panel - ( CMS )", function () {
    afterEach("Checking for test failure", function () {
       testState = this.currentTest?.state;
    });
 
-   it("CMS Flow - Add CMS.", function () {
+   it("CMS - CMS Creation Error Msg Verification.", function () {
+      uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
+      admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
+      admin_panel_uihelper.clickMenuItem("CMS");
+      admin_panel_uihelper.clickButton("Add CMS");
+      admin_panel_uihelper.clickButton("Submit");
+      admin_panel_uihelper.verifyReadOnlyText("slug is required");
+      admin_panel_uihelper.verifyReadOnlyText("name is required");
+      admin_panel_uihelper.verifyReadOnlyText("content is required");
+      admin_panel_uihelper.verifyReadOnlyText("status is required");
+      admin_panel_uihelper.clickButton("Cancel");
+      admin_panel_uihelper.logout();
+   });
+
+   it("CMS - Add CMS.", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("CMS");
@@ -27,7 +41,7 @@ describe("Project - Admin Panel - ( CMS Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("CMS Flow - Verify Added CMS & Edit.", function () {
+   it("CMS - Verify Added CMS & Edit.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -43,7 +57,7 @@ describe("Project - Admin Panel - ( CMS Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("CMS Flow - CMS Delete.", function () {
+   it("CMS - CMS Delete.", function () {
       if (testState != "passed") {
          this.skip();
       }

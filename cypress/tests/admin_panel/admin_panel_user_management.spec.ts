@@ -8,12 +8,12 @@ let testState: string | undefined = "passed";
 const XS: string = utilsCommon.getRandomNumber(1000, 9999).toString();
 // const TS: string = utilsCommon.getTimestamp();
 
-describe("Project - Admin Panel - ( User Management Flow )", function () {
+describe("Project - Admin Panel - ( User Management )", function () {
    afterEach("Checking for test failure", function () {
       testState = this.currentTest?.state;
    });
 
-   it("User Management Flow - Role Creation Error Msg Verification.", function () {
+   it("User Management - Role Creation Error Msg Verification.", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Roles");
@@ -25,7 +25,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - User Creation Error Msg Verification.", function () {
+   it("User Management - User Creation Error Msg Verification.", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Users");
@@ -41,7 +41,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Role Creation.", function () {
+   it("User Management - Role Creation.", function () {
       uihelper.launch_url("https://czft.qa.webcluesstaging.com/admin");
       admin_panel_uihelper.login("temp.sagar@webcluesinfotech.com", "temp_sagar@admin");
       admin_panel_uihelper.clickMenuItem("User Management > Roles");
@@ -54,7 +54,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Verify Created Role.", function () {
+   it("User Management - Verify Created Role.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -65,7 +65,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Add User Wih Newly Created Role.", function () {
+   it("User Management - Add User Wih Newly Created Role.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -84,7 +84,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Role Edit.", function () {
+   it("User Management - Role Edit.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -99,7 +99,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Login With Above Created User.", function () {
+   it("User Management - Login With Above Created User.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -108,7 +108,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Verify User & Then Delete.", function () {
+   it("User Management - Verify User & Then Delete.", function () {
       if (testState != "passed") {
          this.skip();
       }
@@ -122,7 +122,7 @@ describe("Project - Admin Panel - ( User Management Flow )", function () {
       admin_panel_uihelper.logout();
    });
 
-   it("User Management Flow - Role Delete.", function () {
+   it("User Management - Role Delete.", function () {
       if (testState != "passed") {
          this.skip();
       }
