@@ -6,7 +6,7 @@
    "scripts": {
       "cypress": "npx cypress open",
       "test-list": "npx find-cypress-specs --names",
-      "test": "npx cypress run --headed --browser chrome",
+      "test": "npx cypress run --headed --browser chrome --env grep=''",
       "random": "npx cypress run --headed --browser chrome --spec cypress/tests/random_search/**/*.spec.ts",
       "docker-clean": "docker rm $(docker ps --all -q)",
       "docker-mac": "docker pull cypress/included && docker run -it -v $PWD:/tests -w /tests cypress/included --browser chrome --spec cypress/tests/",
