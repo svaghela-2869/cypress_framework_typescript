@@ -17,11 +17,12 @@ export default defineConfig({
    pageLoadTimeout: 25_000,
    chromeWebSecurity: false,
    videoCompression: false,
+   // retries: 2,
 
    reporter: "cypress-mochawesome-reporter",
    reporterOptions: {
       reportDir: resultFolder,
-      reportFilename: "report-[status]",
+      reportFilename: "cypress-mochawesome-[status]-report",
       reportPageTitle: "Mochawesome",
       embeddedScreenshots: true,
       charts: true,
@@ -44,7 +45,7 @@ export default defineConfig({
          const options = {
             outputRoot: resultFolder,
             outputTarget: {
-               "cypress-log.txt": "txt",
+               "cypress-terminal-log.txt": "txt",
             },
             printLogsToFile: "always",
          };
