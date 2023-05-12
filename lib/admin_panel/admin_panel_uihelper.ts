@@ -196,6 +196,7 @@ export function clickLink(value: string) {
 }
 
 export function verifyToastMsgExists(value: string) {
+   cy.wait(2000);
    var toastFoundAt = -1;
    cy.get(".toast-wrapper", { timeout: 10_000 })
       .each(function ($ele, index) {
