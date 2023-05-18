@@ -5,12 +5,12 @@
    "main": "index.js",
    "scripts": {
       "cypress": "npx cypress open",
+      "serial": "bash runner-serial.bash",
+      "parallel": "bash runner-parallel.bash",
       "test-list": "npx find-cypress-specs --names",
-      "test": "npx cypress run --headed --browser chrome --env grep=''",
-      "random": "npx cypress run --headed --browser chrome --spec cypress/tests/random_search/**/*.spec.ts",
       "docker-clean": "docker rm $(docker ps --all -q)",
-      "docker-mac": "docker pull cypress/included && docker run -it -v $PWD:/tests -w /tests cypress/included --browser chrome --spec cypress/tests/",
-      "docker-win": "docker pull cypress/included && docker run -it -v '%cd%':/tests -w /tests cypress/included --browser chrome --spec cypress/tests/"
+      "docker-mac": "docker pull cypress/included && docker run -it -v $PWD:/tests -w /tests cypress/included --browser chrome --spec 'cypress/tests/'",
+      "docker-win": "docker pull cypress/included && docker run -it -v '%cd%':/tests -w /tests cypress/included --browser chrome --spec 'cypress/tests/'"
    },
    "keywords": [],
    "author": "Sagar Vaghela",
@@ -21,6 +21,7 @@
       "@types/dateformat": "^5.0.0",
       "@types/node": "^18.16.3",
       "cypress": "^12.11.0",
+      "cypress-iframe": "^1.0.1",
       "cypress-mochawesome-reporter": "^3.4.0",
       "cypress-plugin-api": "^2.11.0",
       "cypress-terminal-report": "^5.1.1",

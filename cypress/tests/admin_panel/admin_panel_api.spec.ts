@@ -5,7 +5,7 @@ let testState: string | undefined = "passed";
 
 const XS: string = utilsCommon.getRandomNumber(1000, 9999).toString();
 
-describe("Project - Admin Panel - ( REST APIs )", function () {
+describe(Cypress.spec.name, function () {
    afterEach("Checking for test failure", function () {
       testState = this.currentTest?.state;
    });

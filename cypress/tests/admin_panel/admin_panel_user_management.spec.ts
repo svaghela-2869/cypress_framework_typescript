@@ -8,7 +8,7 @@ let testState: string | undefined = "passed";
 const XS: string = utilsCommon.getRandomNumber(1000, 9999).toString();
 // const TS: string = utilsCommon.getTimestamp();
 
-describe("Project - Admin Panel - ( User Management )", function () {
+describe(Cypress.spec.name, function () {
    afterEach("Checking for test failure", function () {
       testState = this.currentTest?.state;
    });

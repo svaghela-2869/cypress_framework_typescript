@@ -1,7 +1,7 @@
 import { Random } from "random-test-values";
 import * as reporter from "../../../lib/common/reporter";
 
-describe("Random Google Search", function () {
+describe(Cypress.spec.name, function () {
    it("Random Text Search.", function () {
       for (let i = 0; i < 5; i++) {
          cy.visit("https://www.google.com/");
