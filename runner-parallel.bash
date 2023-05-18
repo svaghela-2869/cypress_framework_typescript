@@ -36,7 +36,7 @@ if [[ $browser -eq '' ]]
 then
    final=$runnerCommand
 else
-   final="${runnerCommand//chrome/$browser}"
+   final="${runnerCommand//electron/$browser}"
 fi
 
 echo -e "\n$final\n"
