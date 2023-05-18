@@ -35,10 +35,10 @@ read browser
 if [[ -z "$browser" ]]
 then
    final=$runnerCommand
+   echo -e "${GREEN}Running in electron.\n${NC}"
 else
    final="${runnerCommand//electron/$browser}"
+   echo -e "\n${GREEN}Running in $browser.\n${NC}"
 fi
-
-echo -e "\n$final\n"
 
 eval $final
