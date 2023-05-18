@@ -32,7 +32,7 @@ done
 echo -e "${YELLOW}\nWhich browser you want to run ? ( default is electron )${NC}"
 read browser
 
-if [[ $browser -eq '' ]]
+if [[ -z "$browser" ]]
 then
    final=$runnerCommand
 else
