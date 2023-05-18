@@ -4,9 +4,8 @@ YELLOW='\033[0;33m'
 
 value=`cat cypress-runner.txt`
 
-IFS="|"
-
-read -ra ADDR <<<"$value"
+IFS=$'\n'
+ADDR=( ${value} )
 
 baseCommand="npx cypress run --headed --browser electron --spec "
 runnerCommand=""
@@ -17,15 +16,15 @@ length=${#ADDR[@]}
 clear
 echo -e "${GREEN}Below spec files / folder will be run parallelly.\n${NC}"
 
-for i in "${ADDR[@]}";
+for spec in "${ADDR[@]}";
 do
 current=$((current + 1))
-echo "spec : $i"
+echo $spec
 if [[ "$current" -eq "$length" ]]
 then
-   runnerCommand=$runnerCommand$baseCommand$i
+   runnerCommand=$runnerCommand$baseCommand$spec
 else
-   runnerCommand="$runnerCommand$baseCommand$i & sleep 1 && "
+   runnerCommand="$runnerCommand$baseCommand$spec & sleep 1 && "
 fi
 done
 
@@ -42,3 +41,5 @@ else
 fi
 
 eval $final
+
+exit
