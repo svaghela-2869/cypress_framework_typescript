@@ -28,6 +28,7 @@
 
 import "@cypress/xpath";
 import "cypress-mochawesome-reporter/register";
+import "cypress-iframe";
 require("cypress-terminal-report/src/installLogsCollector")();
 require("@cypress/grep")();
 require("cypress-plugin-api");

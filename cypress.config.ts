@@ -1,9 +1,7 @@
 import { defineConfig } from "cypress";
-// import * as utilsCommon from "./lib/common/utilsCommon";
 
 const runDate = new Date();
-const resultFolder = String("results/D" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "T" + runDate.getHours() + "-" + runDate.getMinutes() + "-" + runDate.getSeconds());
-// const resultFolder = utilsCommon.getTimestamp();
+const resultFolder = String("results/D" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "T" + runDate.getHours() + "-" + runDate.getMinutes() + "-" + runDate.getSeconds() + "-" + runDate.getMilliseconds());
 
 export default defineConfig({
    env: {

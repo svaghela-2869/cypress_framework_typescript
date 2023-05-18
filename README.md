@@ -14,10 +14,12 @@ npm install
 npm run cypress
 ```
 
-3. Run tests in headed chrome without opening cypress GUI, change browser in script if you want to run in firefox.
+3. To run spec files, place spec file path in 'cypress-runner.txt' & run below commands based on requirenment.
 
 ```
-npm test
+npm run serial
+
+npm run parallel
 ```
 
 ### Features
@@ -28,10 +30,10 @@ npm test
 npm run list-tests
 ```
 
-2. If you want to run only specific tests like sanity or regression and skip other tests, then add below option for scripts in package.json file and make sure your test suite name contains the keyword.
+2. If you want to run only specific tests like sanity or regression and skip other tests, then add below below command and make sure your test suite name contains the keyword.
 
 ```
---env grep='sanity'
+npx cypress run --env grep='random'
 ```
 
 3. If you want to run tests in docker then use below command.
@@ -44,8 +46,8 @@ npm run docker-win
 
 ### Note
 
-1. All tests file should end with .spec.ts & it should be inside 'cypress/tests' folder.
+1. All tests file should end with '.spec.ts' & it should be inside 'cypress/tests' folder.
 
-2. By default it will run all the test cases which are available in cypress/tests folder.
+2. If you want to run multiple spec files, then seperate them with | in 'cypress-runner.txt' file. ( you can give folder path which contains spec files )
 
 3. While running in docker, please make sure you have docker installed, keep that in mind that by default docker will run all the test cases which are available in cypress/tests folder on chrome. if you want to change, then modify script accordingly.
