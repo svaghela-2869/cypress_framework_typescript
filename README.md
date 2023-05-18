@@ -48,6 +48,6 @@ npm run docker-win
 
 1. All tests file should end with '.spec.ts' & it should be inside 'cypress/tests' folder.
 
-2. If you want to run multiple spec files, then give all spec paths in 'cypress-runner.txt' file, each in new line. ( you can give folder path which contains spec files )
+2. If you want to run multiple spec files, then give all spec paths in 'cypress-runner.txt' file, each in new line. ( you can also give folder path which contains spec files )
 
 3. While running in docker, please make sure you have docker installed, keep that in mind that by default docker command will run all the test cases which are available in cypress/tests folder on chrome. if you want to change, then modify script accordingly.

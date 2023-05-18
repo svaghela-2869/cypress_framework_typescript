@@ -40,8 +40,14 @@ const getIframeBody = function (iframeSelector: string) {
    return getIframeDocument(iframeSelector).its("body").should("not.be.undefined").then(cy.wrap);
 };
 
-export function typeContentInIFrame(iframeSelector: string, fieldSelector: string, valueToEnter: string) {
+export function typeInIFrame(iframeSelector: string, fieldSelector: string, valueToEnter: string) {
    getIframeBody(iframeSelector).find(fieldSelector).as("fieldSelector");
    cy.get("@fieldSelector").type(valueToEnter);
    reporter.pass("Value [ " + valueToEnter + " ] entered inside [ " + fieldSelector + " ] inside iFrame [ " + iframeSelector + " ]");
+}
+
+export function clickInIFrame(iframeSelector: string, fieldSelector: string) {
+   getIframeBody(iframeSelector).find(fieldSelector).as("fieldSelector");
+   cy.get("@fieldSelector").click({ force: true });
+   reporter.pass("Clicked [ " + fieldSelector + " ] inside iFrame [ " + iframeSelector + " ]");
 }
