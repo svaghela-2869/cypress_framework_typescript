@@ -41,5 +41,5 @@ else
 fi
 
 eval $final
-
+clear
 exit

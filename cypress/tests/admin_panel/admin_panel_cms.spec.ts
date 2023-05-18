@@ -34,7 +34,7 @@ describe(Cypress.spec.name, function () {
       admin_panel_uihelper.clickButton("Add CMS");
       admin_panel_uihelper.setTextInputText("Slug", "TEMP_CMS_SLUG_" + XS);
       admin_panel_uihelper.setTextInputText("Name", "TEMP_CMS_NAME_" + XS);
-      uihelper.typeContentInIFrame("iframe[title='Rich Text Area']", "p", "adding cms.");
+      uihelper.typeInIFrame("iframe[title='Rich Text Area']", "p", "adding cms.");
       admin_panel_uihelper.selectOneChoice("Status", "Active");
       admin_panel_uihelper.clickButton("Submit");
       admin_panel_uihelper.verifyToastMsgExists("Page Added sussessfully");
