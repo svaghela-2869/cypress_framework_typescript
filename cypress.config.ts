@@ -30,7 +30,7 @@ export default defineConfig({
       inlineAssets: true,
       saveAllAttempts: false,
       code: false,
-      quiet: false,
+      quiet: true,
       ignoreVideos: true,
       showPending: false,
       autoOpen: true,
