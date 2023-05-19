@@ -1,6 +1,7 @@
 NC='\033[0m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
+RED='\033[0;31m'
 
 value=`cat cypress-runner.txt`
 
@@ -14,7 +15,7 @@ current=0
 length=${#ADDR[@]}
 
 clear
-echo -e "${GREEN}Below spec files / folder will be run serially.\n${NC}"
+echo -e "${GREEN}Below spec files / folders will be run serially.\n${NC}"
 
 for spec in "${ADDR[@]}";
 do
@@ -27,8 +28,13 @@ else
    runnerCommand="$runnerCommand$baseCommand$spec && sleep 1 && "
 fi
 done
+echo -e "\n${GREEN}Total spec files / folders found : $current${NC}"
 
-echo -e "${YELLOW}\nWhich browser you want to run ? ( default is electron )${NC}"
+echo -e "${YELLOW}\nAvailable browses on running system.\n${NC}"
+eval "npx browser-list"
+
+echo -e "${YELLOW}\nEnter browser name you want to run your specs ? ( default is electron, which comes with cypress )${NC}"
+echo -e "${RED}\nNOTE : If you are using MacOS, Safari is not supported yet !\n${NC}"
 read browser
 
 if [[ -z "$browser" ]]
