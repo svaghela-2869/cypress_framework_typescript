@@ -6,7 +6,7 @@ import * as admin_panel_uihelper from "../../../lib/admin_panel/admin_panel_uihe
 let testState: string | undefined = "passed";
 
 const XS: string = utilsCommon.getRandomNumber(1000, 9999).toString();
-// const TS: string = utilsCommon.getTimestamp();
+// const TS: string = utilsCommon.getTimeStamp();
 
 describe(Cypress.spec.name, function () {
    afterEach("Checking for test failure", function () {

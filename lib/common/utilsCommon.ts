@@ -2,7 +2,7 @@ import dateformat from "dateformat";
 import * as reporter from "./reporter";
 import jp = require("jsonpath");
 
-export function getTimestamp(format?: string): string {
+export function getTimeStamp(format?: string): string {
    if (format) {
       return dateformat(format);
    } else {
