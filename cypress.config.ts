@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 
 const runDate = new Date();
-const resultFolder = String("results/D" + runDate.getFullYear() + "-" + Number(runDate.getMonth() + 1) + "-" + runDate.getDate() + "T" + runDate.getHours() + "-" + runDate.getMinutes() + "-" + runDate.getSeconds() + "-" + runDate.getMilliseconds());
+const resultFolder = "results/" + String(runDate.getFullYear() + "_" + String(Number(runDate.getMonth() + 1)).padStart(2, "0") + "_" + String(runDate.getDate()).padStart(2, "0") + "T" + String(runDate.getHours()).padStart(2, "0") + "_" + String(runDate.getMinutes()).padStart(2, "0") + "_" + String(runDate.getSeconds()).padStart(2, "0") + "_" + String(runDate.getMilliseconds()).padStart(3, "0"));
 
 export default defineConfig({
    env: {
@@ -20,7 +20,7 @@ export default defineConfig({
    reporter: "cypress-mochawesome-reporter",
    reporterOptions: {
       reportDir: resultFolder,
-      reportFilename: "cypress-mochawesome-[status]-report",
+      reportFilename: "cypress-[status]-report",
       reportPageTitle: "Mochawesome",
       embeddedScreenshots: true,
       charts: true,

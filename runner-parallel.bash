@@ -28,6 +28,7 @@ else
    runnerCommand="$runnerCommand$baseCommand$spec & sleep 1 && "
 fi
 done
+
 echo -e "\n${GREEN}Total spec files / folders found : $current${NC}"
 
 echo -e "${YELLOW}\nAvailable browses on running system.\n${NC}"
