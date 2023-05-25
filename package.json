@@ -5,8 +5,8 @@
    "main": "index.js",
    "scripts": {
       "cypress": "npx cypress open",
-      "serial": "bash runner-serial.bash",
-      "parallel": "bash runner-parallel.bash",
+      "serial": "bash runner-serial.sh",
+      "parallel": "bash runner-parallel.sh",
       "test-list": "npx find-cypress-specs --names",
       "docker-clean": "docker rm $(docker ps --all -q)",
       "docker-mac": "docker pull cypress/included && docker run -it -v $PWD:/tests -w /tests cypress/included --reporter-options autoOpen=false --browser chrome --spec 'cypress/tests/'",
